@@ -101,8 +101,8 @@ def receptivefield(net, input_shape, device='cpu'):
       hook = _passthrough_grad
       if isinstance(module, nn.MaxPool2d):
         hook = _maxpool_passthrough_grad
-      hooks.append(module.register_backward_hook(hook))
-      #hooks.append(module.register_full_backward_hook(hook))      
+      #hooks.append(module.register_backward_hook(hook))
+      hooks.append(module.register_full_backward_hook(hook))      
   net.apply(insert_hook)
 
   # remember whether the network was in train/eval mode and set to eval
